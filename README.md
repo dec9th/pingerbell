@@ -42,11 +42,11 @@ $ cd $PINGERBELL_HOME ; bash pingerbell.sh target.list
 ```
 
 It could occur errors from slack.  
-You can set  your Slack information on `pingerbell.sh`.
+You can set  your Slack information on `pingerbell.conf`.
 
 ## How to configure 
 
-`pingerbell.sh` is editorable.
+`pingerbell.conf` is editorable.
 
 ```shell
 #
