@@ -36,9 +36,9 @@ Now, It is not possible to set with `#` as comment
 ## Run Pingerbell
 
 ```shell
-$ bash $PINGERBELL_HOME/pingerbell.sh
+$ bash $PINGERBELL_HOME/pingerbell.sh target.list
 or
-$ cd $PINGERBELL_HOME ; bash pingerbell.sh
+$ cd $PINGERBELL_HOME ; bash pingerbell.sh target.list
 ```
 
 It could occur errors from slack.  
@@ -50,22 +50,18 @@ You can set  your Slack information on `pingerbell.sh`.
 
 ```shell
 #
-# configure
-#
-targets="$DIR/target.list"	# location of target file 
-timeout="2"     			# ping timeout
-count="1"					# ping count 
-log_path="$DIR/result.log"	# log 
-errorlog_path="$DIR/error.log" # Only Errorlogs
-delimiter=":"				# Don't modify!!! (it will be moved to Main Script on next commit)
-
-#
 # slack configure
 #
-slack_webhook='https://hooks.slack.com/services/123456789/123456789/XXXXXXXXXXXXXXXXXXX' # Slack webhook address
-slack_channel='YOUR CHANNEL'				# Slack Channel name
-slack_username=$(hostname) 					# or username that you want
-slack_title='[Pingerbell of YOUR_PROJECT]' 	# Set text as first line
+slack_webhook='https://hooks.slack.com/services/123456789/123456789/XXXXXXXXXXXXXXXXXXX'
+slack_channel='pingmonitor'
+slack_username=$(hostname)
+slack_title='[Pingerbell of YOUR_PROJECT]'
+
+#
+# PINGERBELL configure
+#
+ping_timeout="2"
+ping_count="1"
 ```
 
 
@@ -74,7 +70,15 @@ slack_title='[Pingerbell of YOUR_PROJECT]' 	# Set text as first line
 In case of monitoring every minutes, Add `/etc/cron.d/pingerbell`.
 
 ```shell
-* * * * * root /bin/bash /path/to/pingerbell.sh
+* * * * * root /bin/bash /path/to/pingerbell.sh target.list
+```
+
+You can use several lists as below.
+
+```shell
+* * * * * root /bin/bash /path/to/pingerbell.sh target.list
+* * * * * root /bin/bash /path/to/pingerbell.sh production.list
+* * * * * root /bin/bash /path/to/pingerbell.sh target.d/stage.list
 ```
 
 You will get messages from Slack when your server isn't responsible.  
