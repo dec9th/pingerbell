@@ -39,7 +39,7 @@ while IFS=$'\n' read -r array_element; do
     if [ $? == 0 ]; then
         echo "# checking port" 
         # Make it check port
-        echo ping | nc -w 3 $(echo ${target_arr[i]} | awk '{print $1}' |sed  s/${delimiter}/' '/g )
+        echo ping | nc -w $ping_timeout $(echo ${target_arr[i]} | awk '{print $1}' |sed  s/${delimiter}/' '/g )
     else 
         echo "# checking ping" 
         # Make it check ping
